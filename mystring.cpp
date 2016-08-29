@@ -19,6 +19,9 @@ class MyString
     void display(){
         cout << str << endl;
     }
+    ~MyString(){
+        delete [] str;
+    }
 };
 
  int main( )
