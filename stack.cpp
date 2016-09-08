@@ -1,99 +1,101 @@
 #include <iostream>
 using namespace std;
 
+template <class T>
 class LinearDS
 {
 public :
-	 virtual void push(int ele) = 0;
-	 virtual int pop()= 0;
-	 virtual int  getNext() const = 0;
+	 virtual void push(T ele) = 0;
+	 virtual T pop()= 0;
+	 virtual T  getNext() const = 0;
 	 virtual bool empty( ) const = 0;
 };
 
-class MyStack : public LinearDS
+template <class T>
+class MyStack : public LinearDS<T>
 {
 	const int SIZE;
-	int *buffer;
+	T *buffer;
 	int topIndex;
 public : MyStack(int p_size);
-	 void push(int ele);
-	 int pop();
-	 int  getNext() const;
+	 void push(T ele);
+	 T pop();
+	 T  getNext() const;
 	 bool empty( ) const;
 };
 
-class MyQueue : public LinearDS
+template <class T>
+class MyQueue : public LinearDS<T>
 {
 	const int SIZE;
-	int *buffer;
+	T *buffer;
 	int rearIndex;
 	int frontIndex;
 public : MyQueue(int p_size);
-	 void push(int ele);
-	 int pop();
-	 int  getNext() const;
-	 bool empty( ) const;
+	 void push(T ele)
+	 {
+        if(rearIndex < SIZE - 1)
+            buffer[++rearIndex] = ele;
+        else
+            cout << "Queue Full" << endl;
+    }
+	 T pop()
+	 {
+        if(frontIndex > rearIndex)
+            return 0;
+        return buffer[frontIndex++];
+    }
+
+	T  getNext() const
+	{
+        return buffer[frontIndex];
+    }
+	 bool empty( ) const
+	 {
+        return frontIndex > rearIndex ? true : false;
+     }
 };
-MyQueue::MyQueue(int p_size) : SIZE(p_size)
+
+template <class T>
+MyQueue<T>::MyQueue(int p_size) : SIZE(p_size)
 {
-    buffer = new int[SIZE];
+    buffer = new T[SIZE];
 	rearIndex = -1;
 	frontIndex = 0;
 }
 
-void MyQueue::push(int ele)
+template <class T>
+MyStack<T>::MyStack(int p_size) : SIZE(p_size)
 {
-    if(rearIndex < SIZE - 1)
-        buffer[++rearIndex] = ele;
-    else
-        cout << "Queue Full" << endl;
-}
-
-int MyQueue::pop()
-{
-    if(frontIndex > rearIndex)
-        return 0;
-    return buffer[frontIndex++];
-}
-int MyQueue::getNext() const
-{
-    return buffer[frontIndex];
-}
-
-bool MyQueue::empty() const
-{
-    return frontIndex > rearIndex ? true : false;
-}
-
-
-MyStack::MyStack(int p_size) : SIZE(p_size)
-{
-    buffer = new int[SIZE];
+    buffer = new T[SIZE];
 	topIndex = -1;
 }
-
-void MyStack::push(int ele)
+template <class T>
+void MyStack<T>::push(T ele)
 {
     if(topIndex < SIZE - 1)
         buffer[++topIndex] = ele;
     else
         cout << "Stack Full" << endl;
 }
-
-int MyStack::pop()
+template <class T>
+T MyStack<T>::pop()
 {
     if(topIndex == -1)
         return 0;
     return buffer[topIndex--];
 }
-int MyStack::getNext() const
+
+template <class T>
+T MyStack<T>::getNext() const
 {
     if(topIndex == -1)
         return 0;
     return buffer[topIndex];
 }
 
-bool MyStack::empty() const
+template <class T>
+bool MyStack<T>::empty() const
 {
     return topIndex == -1 ? true : false;
 }
@@ -104,19 +106,20 @@ int main()
     enum {PUSH = 1, POP , GETNEXT , EMPTY};
 
     int size,dschoice;
-    LinearDS *pds;
+    LinearDS <string> *pds;
     cout <<"Enter 1 for Stack 2. Queue \n";
     cin >> dschoice;
     cout <<"Enter the size of Data Structure : ";
     cin >> size;
 
     if(dschoice == 1)
-        pds = new MyStack(size);
+        pds = new MyStack<string>(size);
     else
-        pds = new MyQueue(size);
+        pds = new MyQueue<string>(size);
 
 
-    int ch , ele;
+    int ch;
+    string ele;
     for(;;)
     {
         cout <<"\n 1. PUSH \n 2. POP \n 3. GETNEXT \n 4. EMPTY \n";
