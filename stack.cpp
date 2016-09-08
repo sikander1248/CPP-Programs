@@ -2,18 +2,19 @@
 using namespace std;
 class MyStack
 {
-	static const int SIZE = 5;
-	int buffer[SIZE];
+	const int SIZE;
+	int *buffer;
 	int topIndex;
-public : MyStack();
+public : MyStack(int p_size);
 	 void push(int ele);
 	 int pop();
-	 int  getTop();
-	 bool empty( );
+	 int  getTop() const;
+	 bool empty( ) const;
 };
 
-MyStack::MyStack( )
+MyStack::MyStack(int p_size) : SIZE(p_size)
 {
+    buffer = new int[SIZE];
 	topIndex = -1;
 }
 
@@ -31,25 +32,28 @@ int MyStack::pop()
         return 0;
     return buffer[topIndex--];
 }
-int MyStack::getTop()
+int MyStack::getTop() const
 {
     if(topIndex == -1)
         return 0;
     return buffer[topIndex];
 }
 
-bool MyStack::empty()
+bool MyStack::empty() const
 {
     return topIndex == -1 ? true : false;
 }
-
-
 
 int main()
 {
     /* Code to Test Stack */
     enum StackOperations{PUSH = 1, POP , GETTOP , EMPTY};
-    MyStack    s1;
+
+    int stacksize;
+    cout <<"Enter the size of Stack : ";
+    cin >> stacksize;
+    MyStack    s1 = MyStack(stacksize);
+
     int ch , ele;
     for(;;)
     {
