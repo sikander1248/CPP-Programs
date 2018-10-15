@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
  #include <cstring>
  #include <memory>
  using namespace std;
@@ -22,6 +22,6 @@
 
  int main( )
  {
-    MyString  name = "SIKANDER";
-	name.display();
+	 MyString  *pName = new MyString("SIKANDER");
+	 pName->display();
  }
