@@ -24,4 +24,5 @@
  {
 	 MyString  *pName = new MyString("SIKANDER");
 	 pName->display();
+	 delete pName;
  }
