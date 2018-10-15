@@ -1,5 +1,4 @@
-
- #include <iostream>
+#include <iostream>
  #include <cstring>
  #include <memory>
  using namespace std;
@@ -14,6 +13,10 @@
     }
 	void display() const {
 		cout << ptr << endl;
+	}
+	~MyString(){
+		cout <<"Destructor \n";
+		delete [] ptr;
 	}
  };
 
