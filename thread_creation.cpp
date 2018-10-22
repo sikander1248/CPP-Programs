@@ -7,7 +7,8 @@ void fun( )
 }
 int main() {
     
-    thread t = thread(fun);
+    thread t ;
+    t = thread(fun);
     
     t.join();
     
