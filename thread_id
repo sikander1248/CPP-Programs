@@ -1,0 +1,11 @@
+#include <iostream>
+#include <thread>
+#include <stdio.h>
+using namespace std;
+
+int main()
+{
+    cout <<"Main Thread id = "
+         << this_thread::get_id() << endl;
+    return 0;
+}
