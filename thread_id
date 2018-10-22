@@ -1,18 +1,22 @@
 #include <iostream>
 #include <thread>
-#include <stdio.h>
+#include <cstdio>
 using namespace std;
+
 void fun( )
 {
-    printf("Thread function Id = %d \n",this_thread::get_id());
+    printf("Id in Function = %d\n",this_thread::get_id());
 }
-int main() {
-    printf("Main Thread id =  %d\n",this_thread::get_id());
+int main()
+{
+    cout <<"Id in Main function "<<this_thread::get_id()<<endl;
 
-    thread t = thread(fun);
-    printf("t.get_id() = %d \n",t.get_id());
-
-    t.join();
-
+    #if 0
+        fun();
+    #else
+        thread t = thread(fun);
+        printf("Id of t = %d\n",t.get_id());
+        t.join();
+    #endif
     return 0;
 }
