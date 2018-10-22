@@ -2,10 +2,17 @@
 #include <thread>
 #include <stdio.h>
 using namespace std;
-
-int main()
+void fun( )
 {
-    cout <<"Main Thread id = "
-         << this_thread::get_id() << endl;
+    printf("Thread function Id = %d \n",this_thread::get_id());
+}
+int main() {
+    printf("Main Thread id =  %d\n",this_thread::get_id());
+
+    thread t = thread(fun);
+    printf("t.get_id() = %d \n",t.get_id());
+
+    t.join();
+
     return 0;
 }
