@@ -3,20 +3,21 @@
 using namespace std;
 void fun1(int x)
 {
-    cout << "Inside One argument thread " << x << endl;
+    cout << "Argument recieved" << x << endl;
+    x = x * 2;
+    cout << "Inside thread Updated x = "<<x << endl;
 }
 
-void fun2(int a,int b)
-{
-        cout <<"Inside Two argument thread " << a << "\t"<<b<<endl;
-}
+
 int main()
 {
-    thread t1(fun1 , 100);
-    thread t2(fun2 ,  5, 10);
+    int a = 5;
+
+    thread t1(fun1 , a);
 
     t1.join();
-    t2.join();
-    cout << "Main Thread" << endl;
+
+    cout << "Main Thread a = " <<a << endl;
     return 0;
 }
+
