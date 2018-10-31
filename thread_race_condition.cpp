@@ -8,7 +8,7 @@ using namespace std;
 int accum = 0;
 mutex mutex_accum;
 void square(int x) {
-	mutex_accum.lock();
+	lock_guard<mutex> lg(mutex_accum);
 	cout <<"Lock acquired " << x << endl;
 	int temp = accum;
 #ifdef SLEEP
@@ -16,7 +16,6 @@ void square(int x) {
 #endif
     accum = x * x + temp;
 	cout <<"Lock released "<<x << endl;
-	mutex_accum.unlock();
 }
 
 int main() {
