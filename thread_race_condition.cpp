@@ -1,17 +1,22 @@
 #include <iostream>
 #include <vector>
 #include <thread>
- 
+#include <mutex>
+
 using namespace std;
 #define SLEEP
 int accum = 0;
-
+mutex mutex_accum;
 void square(int x) {
-    int temp = accum;
+	mutex_accum.lock();
+	cout <<"Lock acquired " << x << endl;
+	int temp = accum;
 #ifdef SLEEP
 	this_thread::sleep_for(chrono::seconds(1));
 #endif
     accum = x * x + temp;
+	cout <<"Lock released "<<x << endl;
+	mutex_accum.unlock();
 }
 
 int main() {
