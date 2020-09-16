@@ -36,8 +36,13 @@ void display(forward_list<int> fl)
         cout <<"Element found \n";
         forward_list<int>::iterator nextIt = it;
         nextIt++;
-        *it = *nextIt;
-        fl.erase_after(it);
+        if(nextIt == end(fl))
+            cout <<"Cannot  delete the last node \n";
+        else
+        {
+            *it = *nextIt;
+            fl.erase_after(it);
+        }
         cout <<"Forward List elements after deletion : ";
         display(fl);
     }
