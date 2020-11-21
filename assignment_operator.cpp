@@ -43,9 +43,15 @@ public :
     void operator =(const MyString &rhs)
     {
         cout <<"Assignment Operator " << this << endl;
+        delete [] buffer;
         int len = strlen(rhs.buffer);
         buffer = new char[len + 1];
         strcpy(buffer, rhs.buffer );
+    }
+    ~MyString()
+    {
+        cout <<"Destructor "<<this <<endl;
+        delete [] buffer;
     }
 };
 //Default Functions and  Deleted Function
@@ -67,5 +73,4 @@ int main( )
     ms1.display();                      //Keerthi
     cout <<"Contents of ms2 : ";
     ms2.display();
-
 }
