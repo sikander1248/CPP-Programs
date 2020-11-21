@@ -40,13 +40,15 @@ public :
     {
         cout <<(int *)buffer <<" : " << buffer << endl;
     }
-    void operator =(const MyString &rhs)
+    MyString operator =(const MyString &rhs)
     {
         cout <<"Assignment Operator " << this << endl;
+        cout <<"&rhs " << &rhs << endl;
         delete [] buffer;
         int len = strlen(rhs.buffer);
         buffer = new char[len + 1];
         strcpy(buffer, rhs.buffer );
+        return *this;
     }
     ~MyString()
     {
@@ -60,14 +62,18 @@ int main( )
 {
     MyString  ms1 ("Sikander"); // Parameterized Constructor
     MyString  ms2 = "Manimaran";  //Initialization - Constructors
-
+    MyString  ms3;
     cout <<"Contents of ms1 : ";
     ms1.display();
     cout <<"Contents of ms2 : ";
     ms2.display();
 
+    cout  <<"&ms1 = " << &ms1 << endl;
+    cout  <<"&ms2 = " << &ms2 << endl;
+    cout  <<"&ms3 = " << &ms3 << endl;
+
     cout <<"\n-----------------\n";
-    ms2 = ms1;  //Assignment
+    ms3 = ms2 = ms1;  //Assignment
     cout <<"-----------------------\n";
     cout <<"Contents of ms1 : ";
     ms1.display();                      //Keerthi
