@@ -38,11 +38,14 @@ public :
     {
         cout <<"Assignment Operator " << this << endl;
         cout <<"&rhs " << &rhs << endl;
-        if( buffer != nullptr)
-            delete [] buffer;
-        int len = strlen(rhs.buffer);
-        buffer = new char[len + 1];
-        strcpy(buffer, rhs.buffer );
+        if(this != &rhs)
+        {
+            if( buffer != nullptr)
+                delete [] buffer;
+            int len = strlen(rhs.buffer);
+            buffer = new char[len + 1];
+            strcpy(buffer, rhs.buffer );
+        }
         return *this;
     }
     ~MyString()
@@ -61,12 +64,11 @@ int main( )
     cout <<"Contents of ms2 : ";
     ms2.display();
 
-
     cout <<"\n-----------------\n";
     ms1 = ms1;  //Assignment to  self.
     cout <<"-----------------------\n";
     cout <<"Contents of ms1 : ";
-    ms1.display();                      
+    ms1.display();
     cout <<"Contents of ms2 : ";
     ms2.display();
 }
