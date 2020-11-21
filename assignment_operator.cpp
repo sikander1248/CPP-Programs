@@ -40,7 +40,7 @@ public :
     {
         cout <<(int *)buffer <<" : " << buffer << endl;
     }
-    MyString operator =(const MyString &rhs)
+    MyString & operator =(const MyString &rhs)
     {
         cout <<"Assignment Operator " << this << endl;
         cout <<"&rhs " << &rhs << endl;
