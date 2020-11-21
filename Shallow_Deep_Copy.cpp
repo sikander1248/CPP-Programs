@@ -18,8 +18,15 @@ public :
         buffer = new char[len + 1];
         strcpy(buffer, str);
     }
-    MyString(const MyString &rhs) = default;
+    MyString(const MyString &rhs) 
+    {
+        //buffer = rhs.buffer;
 
+        int len = strlen(rhs.buffer);
+        buffer = new char[len + 1];
+        strcpy(buffer, rhs.buffer );
+
+    }
     void modify(const char *newData)
     {
         strcpy(buffer, newData);
