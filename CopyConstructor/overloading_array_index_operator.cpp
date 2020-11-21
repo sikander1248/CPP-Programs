@@ -27,12 +27,12 @@ public :
         buffer = new char[len + 1];
         strcpy(buffer, rhs.buffer );
     }
-    char operator [](int index)
+    char & operator [](int index)
     {
         if(index < 0 || index > strlen(buffer) )
         {
             cout <<"Array Index out of bound \n";
-            return 0;
+            throw "Invalid Index";
         }
         return buffer[index];
     }
@@ -42,7 +42,7 @@ public :
     }
     ~MyString()
     {
-        cout <<"Destructor "<<this <<endl;
+        //cout <<"Destructor "<<this <<endl;
         delete [] buffer;
     }
 };
@@ -50,13 +50,17 @@ public :
 int main( )
 {
     string  s1 = "Sikander";
-    cout <<"First Character " << s1[0] << endl;  // valid statement
-    for(int i = 0 ; s1[i] != '\0' ; i++)
-        cout << s1[i] << endl;
+    cout << s1 << endl;
+    cout <<"Sixth Character : " << s1[6] << endl;
+    s1[6] = 'a';
+    cout << s1  << endl;
 
-    MyString  ms1 = "Sourabh";
-    cout <<"First Character " << ms1[0] << endl; //invalid statement
-    for(int i = 0 ; ms1[i] != '\0' ; i++)
-        cout << ms1[i] << endl;
+    MyString  ms1 = "Sourobh";
+
+    cout <<"Fourth Character : " << ms1[4] << endl;
+    ms1[4] = 'a';
+    for(int i = 0 ; ms1[i] !='\0' ; i++)
+        cout << ms1[i] <<" ";
+    cout << endl;
 
 }
