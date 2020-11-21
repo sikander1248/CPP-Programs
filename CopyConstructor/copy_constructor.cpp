@@ -28,7 +28,7 @@ public :
     }
 };
 
-void  func(MyString ms)
+void  func(MyString &ms)
 {
 
 }
