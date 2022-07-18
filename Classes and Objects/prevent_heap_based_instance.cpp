@@ -6,7 +6,7 @@ using namespace std;
 class PreventObject
 {
 private:
-
+	void* operator new(size_t size);
 public:
 	PreventObject()
 	{
@@ -16,7 +16,7 @@ public:
 int main()
 {
 	PreventObject  obj;	//valid
-	PreventObject* ptr = new PreventObject();	//valid
+	PreventObject* ptr = new PreventObject();	//invalid
 
 	return 0;
 }
