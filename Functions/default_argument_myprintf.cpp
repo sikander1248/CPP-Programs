@@ -2,12 +2,7 @@
 #include <cstdio>
 using namespace std;
 
-void myprint(const char *str)
-{
-    printf(str);
-}
-
-void myprint(const char *str,FILE *fp)
+void myprint(const char *str,FILE *fp = stdout )
 {
     fprintf(fp , str);
 }
